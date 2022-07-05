@@ -55,3 +55,15 @@ console.log(power(5));
 console.log(power(5, 3));
 console.log(power(5, 3, 3));
 console.log(power());
+
+//Exemplo 05 - Recursividade (chamada de função a si mesma)
+function power2(base, expoente) {
+    if (expoente == 0)
+        return 1;
+    else {
+        return base * power2(base, expoente -1)
+    }
+}
+
+console.log("Exemplo 05");
+console.log(power2(2, 3));
