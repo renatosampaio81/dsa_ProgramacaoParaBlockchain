@@ -13,7 +13,7 @@ var nInvert = nSplit.reverse();
 console.log('O inverso dele é: ' + nInvert);
 */
 
-// Solução do professor
+// Solução do Professor
 function reverse_a_number(n) {
     n = n + ""; //insere aspas duplas na var n, que era number e agora é string
     return n.split("").reverse().join("");
