@@ -47,12 +47,13 @@ e o segundo quando o empregado "registra o término do trabalho".
 */
 emp.clockInOut = function() {
     if(this.working) { //se verdadeiro
-        this.hours[this.hours.lenght - 1].push(Date.now());
+        //this.hours[this.hours.lenght - 1].push(Date.now()); //Não funcionou
+        this.hours.push(Date.now());
         this.working = false;
         return this.name + " retornou ao trabaklho neste instante: " + Date.now();
     }
     else {
-        this.hours.push(Date.now());
+        this.hours.push([Date.now()]);
         this.working = true;
         return this.name + " iniciou o trabalho neste instante: " + Date.now();
     }
@@ -60,4 +61,5 @@ emp.clockInOut = function() {
 return "Erro";
 }
 
+console.log(emp.clockInOut());
 console.log(emp.clockInOut());
