@@ -14,9 +14,7 @@ Regras do Jogo
 
 var scores, roundScore, activePlayer;
 
-scores = [0,0];
-roundScore = 0;
-activePlayer = 0;
+init();
 
 document.querySelector('.dice').style.display = 'none'; //oculta a figura do dado
 
@@ -58,6 +56,28 @@ document.querySelector('.btn-hold').addEventListener('click', function(){
   }
 
 })
+
+document.querySelector('.btn-new').addEventListener('click', init);
+
+function init(){
+  scores = [0,0];
+  roundScore = 0;
+  activePlayer = 0;
+
+  document.querySelector('.dice').style.display = 'none';
+
+  document.getElementById('score-0').textContent = '0';
+  document.getElementById('score-1').textContent = '0';
+  document.getElementById('current-0').textContent = '0';
+  document.getElementById('current-1').textContent = '0';
+  document.getElementById('name-0').textContent = 'Jogador 1';
+  document.getElementById('name-1').textContent = 'Jogador 2';
+  document.querySelector('.player-0-panel').classList.remove('winner');
+  document.querySelector('.player-1-panel').classList.remove('winner');
+  document.querySelector('.player-0-panel').classList.remove('active');
+  document.querySelector('.player-1-panel').classList.remove('active');
+  document.querySelector('.player-0-panel').classList.add('active');
+}
 
 function nextPlayer() {
 	//Se o activeplayer for 0, muda pra 1 (e vice versa)
