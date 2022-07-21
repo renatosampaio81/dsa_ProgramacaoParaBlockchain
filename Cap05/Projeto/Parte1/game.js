@@ -22,30 +22,48 @@ document.querySelector('.dice').style.display = 'none'; //oculta a figura do dad
 
 document.querySelector('.btn-roll').addEventListener('click', function(){
 
-        // 1- Número randômico 
-        var dice = Math.floor(Math.random() * 6) + 1;
+	// 1- Número randômico 
+	var dice = Math.floor(Math.random() * 6) + 1;
 
-        // 2- Mostra o resultado
-        var diceDOM = document.querySelector('.dice');
-        diceDOM.style.display = 'block';
-        diceDOM.src = 'dice-' + dice + '.png';
+	// 2- Mostra o resultado
+	var diceDOM = document.querySelector('.dice');
+	diceDOM.style.display = 'block';
+	diceDOM.src = 'dice-' + dice + '.png';
 
-        // 3- Atualiza a pontuação da rodada SE o número rolado NÃO for 1
-        if (dice !== 1) {
-                roundScore += dice;
-                document.querySelector('#current-' + activePlayer).textContent = roundScore;
-        } else {
-                //Se o activeplayer for 0, muda pra 1 (e vice versa)
-                activePlayer === 0 ? activePlayer = 1 : activePlayer = 0;
-                roundScore = 0;
-
-                document.getElementById('current-0').textContent = '0';
-                document.getElementById('current-1').textContent = '0';
-
-                document.querySelector('.player-0-panel').classList.toggle('active'); //o toggle inverte o active, ou seja, se estiver ativo ele desativa e vice versa.
-                document.querySelector('.player-1-panel').classList.toggle('active');
-
-                //document.querySelector('.dice').style.display = 'none';
-
-        }
+	// 3- Atualiza a pontuação da rodada SE o número rolado NÃO for 1
+	if (dice !== 1) {
+		roundScore += dice;
+		document.querySelector('#current-' + activePlayer).textContent = roundScore;
+	} else {
+		nextPlayer();
+	}
 });
+
+document.querySelector('.btn-hold').addEventListener('click', function(){
+	
+  // Adicionar pontuação CORRENTE (atual) à pontuação GLOBAL
+  scores[activePlayer] += roundScore;
+
+  // Atualiza UI
+  document.querySelector('#score-' + activePlayer).textContent = scores[activePlayer];
+
+  // Verifique se o jogador ganhou o jogo
+
+
+	nextPlayer();
+
+})
+
+function nextPlayer() {
+	//Se o activeplayer for 0, muda pra 1 (e vice versa)
+	activePlayer === 0 ? activePlayer = 1 : activePlayer = 0;
+	roundScore = 0;
+
+	document.getElementById('current-0').textContent = '0';
+	document.getElementById('current-1').textContent = '0';
+
+	document.querySelector('.player-0-panel').classList.toggle('active'); //o toggle inverte o active, ou seja, se estiver ativo ele desativa e vice versa.
+	document.querySelector('.player-1-panel').classList.toggle('active');
+
+	//document.querySelector('.dice').style.display = 'none';
+}
