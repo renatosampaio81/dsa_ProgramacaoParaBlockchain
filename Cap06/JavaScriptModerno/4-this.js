@@ -4,7 +4,7 @@ this.id = 'exports';
 
 const testerObj = {
   func1: function () {
-    console.log('func1', this);
+    console.log('func1', this); //aqui ele nao acessa o this
   },
 
   func2: () => {
