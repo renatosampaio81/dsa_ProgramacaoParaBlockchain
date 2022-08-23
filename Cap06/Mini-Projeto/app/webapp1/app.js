@@ -4,6 +4,10 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+//Acesso ao banco de dados
+var monk = require('monk');
+var db = monk('localhost:27017/appsb') //especificando o caminho para acesso ao banco de dados mongodb
+
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
@@ -18,6 +22,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+// Fazer nosso BD ser acessivel pela nossa app
+app.use(function(req,res,next) {
+  req.db = db;
+  next();
+});
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
