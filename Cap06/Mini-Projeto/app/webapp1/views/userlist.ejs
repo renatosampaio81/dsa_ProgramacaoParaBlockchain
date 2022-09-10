@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Lista Usuários</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1>Lista de Usuários no Banco de Dados</h1>
+    <ul>
+      <!--Código JS que faz o Loop por todos os registros que retornaram da collection do MongoDB-->
+      <%
+        var list = '';
+        for (i = 0; i < userlist.length; i++) {
+          list += '<li><a href="mailto:' + userlist[i].email + '">' + userlist[i].username + '</a></li>';
+        }
+      %>
+      <%- list %>
+    </ul>
+  </body>
+</html>

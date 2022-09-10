@@ -6,7 +6,7 @@ var logger = require('morgan');
 
 //Acesso ao banco de dados
 var monk = require('monk');
-var db = monk('localhost:27017/appsb') //especificando o caminho para acesso ao banco de dados mongodb
+var db = monk('localhost:27017/appdb'); //especificando o caminho para acesso ao banco de dados mongodb
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
