@@ -17,4 +17,34 @@ router.get('/userlist', function(req, res) {
   });
 });
 
+/* GET New User page. */
+router.get('/newuser', function(req, res) {
+  res.render('newuser', { title: 'Adiciona Novo Usuário' }); //Substitui o título lá na newuser.ejs
+});
+
+/* POST to Add User Service */
+router.post('/adduser', function(req, res) {
+
+  var db = req.db; //abre a conexão com o BD
+  var collection = db.get('usuarios'); //verifica a collection
+
+  // Obtém valores do formulário web
+  var userName = req.body.username;
+  var userEmail = req.body.useremail;
+
+  // Envia para o banco de dados
+  collection.insert({
+      "username" : userName,
+      "email" : userEmail
+  }, function (err, doc) {
+      if (err) {
+          res.send("Problema com o banco de dados.");
+      }
+      else {
+          // E carrega a lista de usuários
+          res.redirect("userlist");
+      }
+  });
+});
+
 module.exports = router;
